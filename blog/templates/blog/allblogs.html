@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Haniye E</title>
+    <title>Haniye's Blog</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -34,54 +34,38 @@
     
   </head>
   <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href=" {% url 'home' %} ">Haniye Eshghi</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link " href="http://Instagram.com/hny.e">Instagram </a>
-            <a class="nav-item nav-link" href=" {% static 'cv.pdf' %} ">Resume</a>
-            <a class="nav-item nav-link" href=" {% url 'allblogs' %} ">Blog</a>
-          </div>
-        </div>
-      </nav>
+    <header><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href=" {% url 'home' %} ">Haniye Eshghi</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link " href="http://Instagram.com/hny.e">Instagram </a>
+                <a class="nav-item nav-link" href=" {% static 'cv.pdf' %} ">Resume</a>
+                <a class="nav-item nav-link active" href=" {% url 'allblogs' %} ">Blog</a>
+              </div>
+            </div>
+          </nav>
 </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Hi I'm Haniye</h1>
-      <p class="lead text-muted">I am glad your're here!</p>
-      <p>
-        <a href="mailto:haniye.eshghi@gmail.com" class="btn btn-primary my-2">Email me</a>
-      </p>
-      <img src="{% static 'mypic.jpg' %}" height="300"/>
+    <div class = "container">
+        <h1 class = "text-center pt-3">Welcome to Haniye's Blog</h1>
+        <br/>
+        <br/>
+        <h2>Latest Posts</h2>
+        <hr/>
+        {% for blog in blogs.all %}
+            <a href=" {% url 'detail' blog.id %} "><h4>{{blog.title}}</h4></a>
+            {{blog.pub_date_pretty}}
+            <br/>
+            <img class="img-fluid" src=" {{blog.image.url}} " height="200" width="200" />
+            <br/>
+            <p> {{blog.summary}} </p>
+            <hr/>
+        {% endfor %}
     </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-        {% for job in jobs.all %}
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img class="bd-placeholder-img card-img-top" width="100%" height="225" src = "{{job.image.url}}"/>
-                    <div class="card-body">
-                    <p class="card-text"> {{job.summary}} </p>
-               
-                    </div>
-                </div>
-            </div>
-        {% endfor %} 
-      </div>
-    </div>
-  </div>
-
 </main>
 
 <footer class="text-muted">
